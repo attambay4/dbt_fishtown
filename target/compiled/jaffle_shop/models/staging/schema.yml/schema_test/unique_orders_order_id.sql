@@ -1,4 +1,6 @@
 
+    
+    
 
 
 
@@ -14,4 +16,5 @@ from (
     having count(*) > 1
 
 ) validation_errors
+
 

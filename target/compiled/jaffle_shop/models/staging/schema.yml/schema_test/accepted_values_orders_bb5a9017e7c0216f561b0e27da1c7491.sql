@@ -1,4 +1,6 @@
 
+    
+    
 
 
 
@@ -25,4 +27,5 @@ validation_errors as (
 
 select count(*) as validation_errors
 from validation_errors
+
 

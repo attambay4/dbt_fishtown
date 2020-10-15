@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ref('orders')}}
+    select * from `fishtown-interview-292223`.`dbt_atambay`.`orders`
 ),
 
 --determining the first completed order id

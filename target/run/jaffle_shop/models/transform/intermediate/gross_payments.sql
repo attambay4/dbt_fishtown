@@ -1,5 +1,9 @@
-with source as (
-    select * from {{ref('payments')}}
+
+
+  create or replace view `fishtown-interview-292223`.`dbt_atambay`.`gross_payments`
+  OPTIONS()
+  as with source as (
+    select * from `fishtown-interview-292223`.`dbt_atambay`.`payments`
 ),
 
 --determinining total payments for each completed order by different categories (tax, shipping etc)
@@ -38,4 +42,5 @@ xf as (
     group by order_id 
 )
 
-select * from xf
+select * from xf;
+

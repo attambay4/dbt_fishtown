@@ -1,5 +1,9 @@
-with source as (
-    select * from {{ref('devices')}}
+
+
+  create or replace view `fishtown-interview-292223`.`dbt_atambay`.`first_order_device`
+  OPTIONS()
+  as with source as (
+    select * from `fishtown-interview-292223`.`dbt_atambay`.`devices`
 ),
 
 --determining first device used for purchase
@@ -27,4 +31,5 @@ categories as (
     from xf
 )
 
-select * from categories
+select * from categories;
+

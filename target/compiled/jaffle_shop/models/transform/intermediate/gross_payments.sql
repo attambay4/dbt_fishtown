@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ref('payments')}}
+    select * from `fishtown-interview-292223`.`dbt_atambay`.`payments`
 ),
 
 --determinining total payments for each completed order by different categories (tax, shipping etc)

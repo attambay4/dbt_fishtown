@@ -1,10 +1,4 @@
-{{
-    config(
-        materialized = 'table',
-        dist = 'type_id',
-        sort = 'created_at'
-    )
-}}
+
 
 with source as (
     select * from `fa--interview-task.interview.devices`

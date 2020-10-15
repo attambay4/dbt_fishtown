@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ref('devices')}}
+    select * from `fishtown-interview-292223`.`dbt_atambay`.`devices`
 ),
 
 --determining first device used for purchase

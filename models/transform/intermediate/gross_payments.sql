@@ -1,9 +1,11 @@
 with source as (
+    
     select * from {{ref('payments')}}
 ),
 
 --determinining total payments for each completed order by different categories (tax, shipping etc)
 xf as (
+
     select 
         order_id, 
         sum( 

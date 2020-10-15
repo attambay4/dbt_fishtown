@@ -8,11 +8,13 @@
     
 
 with source as (
+
     select * from `fa--interview-task.interview.addresses`
 ),
 
 --determining country type
 xf as (
+    
     select
         *,
         case

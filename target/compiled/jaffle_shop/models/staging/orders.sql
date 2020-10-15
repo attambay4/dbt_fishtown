@@ -1,11 +1,13 @@
 
 
 with source as (
+
     select * from `fa--interview-task.interview.orders`
 ),
 
 --determinining categories for different order statuses
 xf as (
+    
     select 
         *,
         case

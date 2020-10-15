@@ -1,20 +1,23 @@
 with source as (
+
     select * from `fishtown-interview-292223`.`dbt_atambay`.`devices`
 ),
 
 --determining first device used for purchase
 xf as (
-    select 
-        distinct cast(type_id as int64) as order_id, 
-                 first_value(device) OVER (partition by type_id order by created_at 
-                                           ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING 
-                                          ) as purchase_device 
+
+    select distinct 
+                    cast(type_id as int64) as order_id, 
+                    first_value(device) OVER (partition by type_id order by created_at 
+                                              ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING 
+                                             ) as purchase_device 
     from source 
     where type = 'order'
 ),
 
 --determining categories for the purchase device derived above
 categories as (
+    
     select 
         *,
         CASE 

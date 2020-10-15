@@ -7,11 +7,13 @@
 }}
 
 with source as (
+
     select * from `fa--interview-task.interview.devices`
 ),
 
---determining dates for times in float data type in raw data
+--changing float data format for dates to date data format
 modified as (
+    
     select 
         type,
         device,   

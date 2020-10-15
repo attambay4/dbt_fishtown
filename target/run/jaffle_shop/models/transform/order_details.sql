@@ -8,26 +8,32 @@
     
 
 with orders as (
+
     select * from `fishtown-interview-292223`.`dbt_atambay`.`orders`
 ),
 
 first_order_device as (
+
     select * from `fishtown-interview-292223`.`dbt_atambay`.`first_order_device`
 ),
 
 first_order as (
+
     select * from `fishtown-interview-292223`.`dbt_atambay`.`first_order`
 ),
 
 addresses as (
+
     select * from `fishtown-interview-292223`.`dbt_atambay`.`addresses`
 ),
 
 gross_payments as (
+
     select * from `fishtown-interview-292223`.`dbt_atambay`.`gross_payments`
 ),
 
 joined as (
+
     SELECT
         orders.order_id, 
         orders.user_id, 
@@ -61,6 +67,7 @@ joined as (
 --determining 1. if the order is first time (new) or repeated
 --determining 2. total payments for within US and outside shipping
 categories as (
+
     select *,
            case 
                 when first_order_id = order_id THEN 'new' 
@@ -75,6 +82,7 @@ categories as (
 
 --determining amounts in USD
 final as (
+    
     select 
         *,
         trunc((amount_total_cents / 100),2) as order_amount_total,

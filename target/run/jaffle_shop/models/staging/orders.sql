@@ -1,10 +1,11 @@
-{{
-    config(
-        materialized = 'table',
-        dist = 'user_id',
-        sort = 'created_at'
-    )
-}}
+
+
+  create or replace table `fishtown-interview-292223`.`dbt_atambay`.`orders`
+  
+  
+  OPTIONS()
+  as (
+    
 
 with source as (
     select * from `fa--interview-task.interview.orders`
@@ -22,3 +23,5 @@ xf as (
 )
 
 select * from xf
+  );
+    

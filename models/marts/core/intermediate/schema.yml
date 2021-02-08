@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: first_order
+    description: This table has information about user's first order that was
+                 not cancelled
+
+    columns:
+      - name: user_id
+        description: This is a unique identifier for a user
+        tests:
+          - unique
+          - not_null
+
+      - name: first_order_id
+        description: User's first order_id
+
+  - name: first_order_device
+    description: This table has device information about user's first order
+
+    columns:
+      - name: order_id
+        description: This is a unique identifier for an order
+        tests:
+          - unique
+          - not_null
+
+      - name: purchase_device
+        description: Purchase device information through which the order was
+                     placed
+
+      - name: purchase_device_type
+        description: Purchase device information through which the order was
+                     placed further classified into categories
+
+  - name: payments_completed
+    description: This table has payment information about orders in completed
+                 status
+
+    columns:
+      - name: order_id
+        description: This is a unique identifier for an order
+        tests:
+          - unique
+          - not_null
+
+      - name: gross_tax_amount_cents
+        description: Gross tax amount of the order in cents
+
+      - name: gross_amount_cents
+        description: Gross amount of the order in cents
+
+      - name: gross_shipping_amount_cents
+        description: Gross shipping amount of the order in cents
+
+      - name: gross_total_amount_cents
+        description: Gross total amount of the order in cents combining tax
+                     amount, gross order amount and shipping amount

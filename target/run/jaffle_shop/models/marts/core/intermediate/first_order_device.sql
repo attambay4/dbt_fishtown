@@ -12,9 +12,10 @@ xf as (
 
     select distinct
                     cast(type_id as int64) as order_id,
-                    first_value(device) OVER (partition by type_id order by created_at
-                                              ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-                                             ) as purchase_device
+                    first_value(device) OVER (partition by type_id order by
+                      created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED
+                      FOLLOWING) as purchase_device
+
     from source
     where type = 'order'
 ),
@@ -31,6 +32,7 @@ categories as (
             when NULLIF(purchase_device, '') IS NULL THEN 'unknown'
             ELSE 'ERROR'
         END AS purchase_device_type
+        
     from xf
 )
 

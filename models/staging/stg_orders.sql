@@ -8,18 +8,19 @@
 
 with source as (
 
-    select * from `fa--interview-task.interview.orders`
+    select * from {{ source('data', 'orders') }}
 ),
 
 --determinining categories for different order statuses
 xf as (
-    
-    select 
+
+    select
         *,
         case
-            when status IN ('paid', 'completed', 'shipped') THEN 'completed' 
-            else status 
+            when status IN ('paid', 'completed', 'shipped') THEN 'completed'
+            else status
         end as order_status_category
+
     from source
 )
 

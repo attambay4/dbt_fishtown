@@ -1,7 +1,17 @@
 version: 2
 
+sources:
+  - name: data
+    schema: interview
+    database: fa--interview-task
+    tables:
+      - name: orders
+      - name: addresses
+      - name: devices
+      - name: payments
+
 models:
-  - name: orders
+  - name: stg_orders
     columns:
       - name: order_id
         tests:
@@ -11,3 +21,20 @@ models:
         tests:
           - accepted_values:
               values: ['cancelled', 'completed', 'paid', 'pending', 'shipped']
+
+  - name: stg_payments
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['cancelled', 'completed', 'paid', 'pending', 'shipped']
+
+  - name: stg_addresses
+    columns:
+      - name: user_id
+        tests:
+          - not_null

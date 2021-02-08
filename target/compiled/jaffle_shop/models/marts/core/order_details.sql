@@ -22,7 +22,7 @@ addresses as (
 
 gross_payments as (
 
-    select * from `fishtown-interview-292223`.`dbt_atambay`.`gross_payments`
+    select * from `fishtown-interview-292223`.`dbt_atambay`.`payments_completed`
 ),
 
 joined as (
@@ -46,13 +46,17 @@ joined as (
         gross_payments.gross_amount_cents,
         gross_payments.gross_shipping_amount_cents,
         gross_payments.gross_total_amount_cents
+
     from orders
     left join first_order_device
     using (order_id)
+
     left join first_order
     using (user_id)
+
     left join addresses
     using (order_id)
+
     left join gross_payments
     using (order_id)
 ),
@@ -70,6 +74,7 @@ categories as (
                 when currency = 'USD' then amount_total_cents
                 else gross_total_amount_cents
            end as total_amount_cents
+
     from joined
 ),
 
@@ -84,6 +89,7 @@ final as (
         trunc((gross_amount_cents/ 100),2) as gross_amount,
         trunc((gross_shipping_amount_cents/ 100),2) as gross_shipping_amount,
         trunc((gross_total_amount_cents/ 100),2) as gross_total_amount
+        
     from categories
 )
 
